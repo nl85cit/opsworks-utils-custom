@@ -54,11 +54,6 @@ else
   package 'perl-LWP-Protocol-https'
 end
 
-package 'perl-Switch'
-package 'perl-DateTime'
-package 'perl-Sys-Syslog'
-package 'perl-LWP-Protocol-https'
-
 execute 'install-metrics-script' do
   user 'root'
   cwd '/root'
