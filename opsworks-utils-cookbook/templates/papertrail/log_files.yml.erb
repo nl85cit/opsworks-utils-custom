@@ -1,0 +1,11 @@
+files:
+  - /var/chef/runs/**/chef.log
+  - /var/log/messages
+<% node['papertrail']['files'].each do |f|
+%>  - <%= f %>
+<% end %>
+hostname: <%= @host_name %>
+destination:
+  host: <%= node['papertrail']['host'] %>
+  port:  <%= node['papertrail']['port'] %>
+  protocol:  <%= node['papertrail']['protocol'] %>
