@@ -1,0 +1,8 @@
+package 'perl-DateTime'
+package 'perl-CPAN'
+package 'perl-Net-SSLeay'
+package 'perl-IO-Socket-SSL'
+package 'perl-Digest-SHA'
+package 'gcc'
+package 'zip'
+package 'unzip'
