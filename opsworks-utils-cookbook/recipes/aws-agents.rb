@@ -38,7 +38,7 @@ end
 # Packages for custom metrics monitoring
 # http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html#mon-scripts-getstarted
 
-if node[:platform_family].include?("rhel")
+if node[:platform].include?("redhat")
   package 'perl-DateTime'
   package 'perl-CPAN'
   package 'perl-Net-SSLeay'
