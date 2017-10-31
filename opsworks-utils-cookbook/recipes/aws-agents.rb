@@ -32,6 +32,29 @@ end
 #  action :create_if_missing
 #end
 
+case node[:platform]
+when "amazon"
+  rpm_package 'ssm-agent' do
+    source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
+  end
+when "redhat"
+  rpm_package 'ssm-agent' do
+    source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
+  end
+when "ubuntu"
+  dpk_package 'ssm-agent' do
+    source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
+  end
+when "suse"
+  rpm_package 'ssm-agent' do
+    source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
+  end
+else
+  rpm_package 'ssm-agent' do
+    source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
+  end
+end
+
 package 'ssm-agent' do
   source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
 end
