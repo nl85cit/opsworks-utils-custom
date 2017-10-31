@@ -37,8 +37,14 @@ end
 
 # Packages for custom metrics monitoring
 # http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html#mon-scripts-getstarted
-
-if node[:platform].include?("redhat")
+# http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html
+case node[:platform]
+when "amazon"
+  package 'perl-Switch'
+  package 'perl-DateTime'
+  package 'perl-Sys-Syslog'
+  package 'perl-LWP-Protocol-https'
+when "redhat"
   package 'perl-DateTime'
   package 'perl-CPAN'
   package 'perl-Net-SSLeay'
@@ -47,6 +53,14 @@ if node[:platform].include?("redhat")
   package 'gcc'
   package 'zip'
   package 'unzip'
+when "ubuntu"
+  package 'unzip'
+  package 'libwww-perl'
+  package 'libdatetime-perl'
+when "suse"
+  package 'perl-Switch'
+  package 'perl-DateTime'
+  package 'perl-LWP-Protocol-https'
 else
   package 'perl-Switch'
   package 'perl-DateTime'
