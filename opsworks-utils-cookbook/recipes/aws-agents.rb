@@ -55,10 +55,6 @@ else
   end
 end
 
-package 'ssm-agent' do
-  source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
-end
-
 #rpm_package 'ssm-agent' do
 #  source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
 #end
