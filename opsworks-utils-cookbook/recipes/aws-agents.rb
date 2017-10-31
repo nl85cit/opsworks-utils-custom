@@ -46,7 +46,7 @@ when "ubuntu"
     source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
   end
 when "suse"
-  rpm_package 'ssm-agent' do
+  zypper_package 'ssm-agent' do
     source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
   end
 else
