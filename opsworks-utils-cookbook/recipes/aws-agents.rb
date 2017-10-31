@@ -4,14 +4,41 @@ instance = search('aws_opsworks_instance', 'self:true').first
 
 ### SSM Agent
 
-remote_file "#{Chef::Config[:file_cache_path]}/amazon-ssm-agent.rpm" do
-  source "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+case node[:platform]
+when "amazon"
+  ssmagent_remote_file = "amazon-ssm-agent.rpm"
+  ssmagent_source = "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+when "redhat"
+  ssmagent_remote_file = "amazon-ssm-agent.rpm"
+  ssmagent_source = "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+when "ubuntu"
+  ssmagent_remote_file = "amazon-ssm-agent.rpm"
+  ssmagent_source = "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+when "suse"
+  ssmagent_remote_file = "amazon-ssm-agent.rpm"
+  ssmagent_source = "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+else
+  ssmagent_remote_file = "amazon-ssm-agent.rpm"
+  ssmagent_source = "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+end
+
+remote_file "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}" do
+  source "#{ssmagent_source}"
   action :create_if_missing
 end
 
+#remote_file "#{Chef::Config[:file_cache_path]}/amazon-ssm-agent.rpm" do
+#  source "https://amazon-ssm-#{region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm"
+#  action :create_if_missing
+#end
+
 rpm_package 'ssm-agent' do
-  source "#{Chef::Config[:file_cache_path]}/amazon-ssm-agent.rpm"
+  source "#{Chef::Config[:file_cache_path]}/#{ssmagent_remote_file}"
 end
+
+#rpm_package 'ssm-agent' do
+#  source "#{Chef::Config[:file_cache_path]}/amazon-ssm-agent.rpm"
+#end
 
 ### AWS Inspector Agent
 
