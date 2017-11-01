@@ -9,7 +9,7 @@ package_install_array.each do |this_package|
   when "redhat"
     package "#{this_package}"
   when "ubuntu"
-    dpkg_package "#{this_package}"
+    package "#{this_package}"
   when "suse"
     zypper_package "#{this_package}"
   else
