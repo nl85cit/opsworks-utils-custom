@@ -1,3 +1,5 @@
+package 'nano' 
+
 package_install_array =  ['nano', 'emacs']
 
 package_install_array.each do |this_package|
